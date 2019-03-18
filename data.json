@@ -1,0 +1,21 @@
+{
+    "richPresenceEnabled": true,
+    "richpresenceData": {
+        "application": "317308210132418570",
+        "name": "Hydrogen 2.0.5",
+        "type": "PLAYING",
+        "details": "by The Vatch",
+        "state": "https://www.hydrogenhacks.co.uk",
+        "timestamp": true,
+        "largeImage": "382635969800568832",
+        "smallImage": "353570303743361024",
+        "largeText": "Tag",
+        "smallText": "No idea if this will work",
+        "url": "",
+        "partySize": {
+            "current": 1,
+            "max": 1
+        }
+    },
+    "webhookNotifiers": false
+}
