@@ -71,6 +71,7 @@ Tag.on('ready', () => {
   }, 10000);
 });
 
+// // Unused command to set display picture from ressources folder
 // Tag.user.setAvatar(fs.readFileSync('./res/tagbo.png'), function (err) {
 //   if (err) throw err;
 // });
@@ -90,13 +91,8 @@ Tag.on('guildMemberAdd', member => {
     .addField('Information', `Make sure to properly read the ${ruleschannel} channel to make sure you don\'t break any rules.`, true)
     .setFooter(`Welcome to ${member.guild.name}, you are member number: ${member.guild.memberCount}!`)
     .setTimestamp();
-  // const newuserhydroinfo = new Discord.RichEmbed()
-  //   .setAuthor(`Welcome to ${member.guild.name}!`, member.guild.iconURL)
-  //   .setColor(num)
-  //   .setThumbnail(member.user.avatarURL)
-  //   .addField('User', `<@${member.user.id}>`, true)
-  //   .setFooter(`Welcome to ${member.guild.name}`)
-  //   .setTimestamp()
+
+  // Guild specification
   if (member.guild.id === "473223354330120203") {
     msg.channel.send(`Welcome to the ${msg.guild.name} server, ${msg.user.username}!`)
     console.log(`New join: ${msg.user.username} in ${msg.guild.name}`)
@@ -157,7 +153,6 @@ Tag.on("message", msg => {
 
   }
   let gonna = new RegExp(/((w|W)\s*)+((e)\s*)+(( )\s*)+((c|C)\s*)+((o)\s*)+((u)\s*)+((l)\s*)+((d)\s*)/g);
-  // let nigga = new RegExp
   if (msg.content.match(gonna)) {
     msg.channel.send(`**bUt ArE wE GoNnA???**`, {
       files: [
