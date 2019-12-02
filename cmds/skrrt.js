@@ -14,3 +14,7 @@ module.exports.run = async(Tag, msg, args) => {
 module.exports.help = {
     name: "skrrt"
 }
+
+module.exports.conf = {
+    aliases: ['sk']
+}

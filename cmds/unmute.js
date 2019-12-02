@@ -24,3 +24,7 @@ module.exports.run = async(Tag, msg, args) => {
 module.exports.help = {
     name: "unmute"
 }
+
+module.exports.conf = {
+    aliases: ['unshhh']
+}

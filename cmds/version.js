@@ -9,3 +9,7 @@ module.exports.run = async(Tag, msg, args) => {
 module.exports.help = {
     name: "version"
 }
+
+module.exports.conf = {
+    aliases: ['v']
+}

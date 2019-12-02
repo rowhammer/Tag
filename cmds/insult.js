@@ -14,3 +14,7 @@ module.exports.run = async(Tag, msg, args) => {
 module.exports.help = {
     name: 'insult'
 }
+
+module.exports.conf = {
+    aliases : ['fuckyou']
+}

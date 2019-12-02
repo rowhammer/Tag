@@ -5,3 +5,7 @@ module.exports.run = async(Tag, msg, args) => {
 module.exports.help = {
     name: 'evening'
 }
+
+module.exports.conf = {
+    aliases: ['ev']
+}

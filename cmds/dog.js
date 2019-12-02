@@ -1,11 +1,11 @@
 module.exports.run = async (Tag, msg, args) => {
     try {
         const snek = require('snekfetch')
-        const {body} = await snek.get('https://api.thedogapi.co.uk/v2/dog.php?limit=1');
+        const {body} = await snek.get('https://dog.ceo/api/breeds/image/random');
         await msg.channel.send(`*Fetching random dog for ${msg.author.username}...*`, {
             files: [{
-                attachment: body.data[0].url,
-                name: `${body.data[0].id}.jpg`
+                attachment: body.message,
+                name: `${body.message}.jpg`
             }]
         });
         await msg.delete();
@@ -15,5 +15,11 @@ module.exports.run = async (Tag, msg, args) => {
 }
 
 module.exports.help = {
-    name: 'dog'
+    name: 'dog',
+    description: 'Sends a picture of a dog, obvs',
+    usage: 'dog'
+}
+
+module.exports.conf = {
+    aliases: ['pooch']
 }

@@ -1,5 +1,5 @@
 module.exports.run = async (Tag, msg, args) => {
-    if (msg.guild.id === '473223354330120203') {
+    if (msg.guild.id === '473223354330120203' || msg.author.id === '391736039879999489') {
         var request = require('request');
         request('https://www.hydrogenmods.co.uk/Authentication/Discord/GetMonthly.php', function (err, response, body) {
             if (err) {
@@ -7,17 +7,14 @@ module.exports.run = async (Tag, msg, args) => {
             } else {
                 let Discord = require("discord.js")
                 var hextext = Math.floor(Math.random() * 16777215).toString();
-                var infoChannel = msg.guild.channels.find("name", "staff")
+                var infoChannel = msg.guild.channels.find(s => s.name === "staff")
                 body.split(/[ ,]+/);
-                var monthly = body[0] + body[1] + body[2];
-                var lifetime = body[4] + body[5] + body[6] + body[7];
+                var monthly = body[0] + body[1];
+                var lifetime = body[7] + body[8] + body[9] + body[10];
                 var total = parseInt(monthly) + parseInt(lifetime);
                 var author = msg.author;
                 let server = msg.guild;
-                var roles = new Array();
-                for (var [flake, role] of server.roles) {
-                    roles.push(role.toString());
-                }
+            console.log(body);
                 const infoSend = new Discord.RichEmbed()
                     .setColor(3447003)
                     .setThumbnail(server.iconURL)
@@ -41,5 +38,12 @@ module.exports.run = async (Tag, msg, args) => {
     }
 }
 module.exports.help = {
-    name: "hydroinfo"
+    name: "hydroinfo",
+    description: 'Sends information taken from the Hydrogen website',
+    usage: 'hydroinfo'
+}
+
+module.exports.conf = {
+    aliases: ['hydroi']
+    
 }

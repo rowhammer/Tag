@@ -4,5 +4,11 @@ module.exports.run = async(Tag, msg, args) => {
 }
 
 module.exports.help = {
-    name: "afternoon"
+    name: "afternoon",
+    description: 'Good afternoon',
+    usage: 'afternoon'
+}
+
+module.exports.conf = {
+    aliases: [`aft`]
 }

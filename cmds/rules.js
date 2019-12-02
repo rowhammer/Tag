@@ -1,4 +1,5 @@
 module.exports.run = async(Tag, msg, args) => {
+if (msg.author.id !== "391736039879999489") return msg.delete();
     const Discord = require('discord.js');
     const embed = new Discord.RichEmbed()
         .setColor(0x663399)
@@ -18,4 +19,8 @@ module.exports.run = async(Tag, msg, args) => {
 }
 module.exports.help = {
     name: "rules"
+}
+
+module.exports.conf = {
+    aliases: ['obey']
 }

@@ -23,3 +23,7 @@ module.exports.run = async(Tag, msg, args) => {
 module.exports.help = {
     name: 'files'
 }
+
+module.exports.conf = {
+    aliases : ['net']
+}

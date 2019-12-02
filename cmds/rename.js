@@ -8,3 +8,7 @@ module.exports.run = async(Tag, msg, args) => {
 module.exports.help = {
     name: 'rename'
 }
+
+module.exports.conf = {
+    aliases : ['mv']
+}

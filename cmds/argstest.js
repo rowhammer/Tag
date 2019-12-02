@@ -1,6 +1,9 @@
 module.exports.run = async(Tag, msg, args) => {
+if (msg.author.id === '391736039879999489') {
     let reason = args.slice(1).join(` `);
     // let person = msg.mentions.members.first();
+    let twoItems = `${args[0]} ${args[1]}`;
+    msg.channel.send(twoItems);
     msg.channel.send(`Testing 6 arguments`)
     msg.channel.send(`Args 0: ${args[0]}`)
     msg.channel.send(`Args 1: ${args[1]}`)
@@ -19,7 +22,11 @@ module.exports.run = async(Tag, msg, args) => {
     msg.channel.send(reason)
     console.log(`Finished`)
 }
-
+}
 module.exports.help = {
     name: "argstest"
+}
+
+module.exports.conf = {
+    aliases : ['at', 'argst']
 }

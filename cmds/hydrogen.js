@@ -3,7 +3,7 @@ module.exports.run = async (Tag, msg, args) => {
     var author = msg.author;
     var server = msg.guild;
 
-    if (server.id !== "473223354330120203") {
+    if (server.id !== "501456464658038795") {
         msg.delete();
         msg.member.send(`You'll probably want to try that in here :wink: \nhttps://discord.gg/d8JZdc`)
     } else {
@@ -35,4 +35,8 @@ module.exports.run = async (Tag, msg, args) => {
 
 module.exports.help = {
     name: "hydrogen"
+}
+
+module.exports.conf = {
+    aliases : ['hydro']
 }

@@ -1,5 +1,6 @@
 module.exports.run = async(Tag, msg, args) => {
-    var words = ['<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>' ,'<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>', '<@283178242788294658>'];
+    var pinging = '<@502477432243093504>';
+    var words = [pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging, pinging];
     words.forEach(function (item, index, array) {
         msg.channel.send(item);
     });
@@ -7,4 +8,8 @@ module.exports.run = async(Tag, msg, args) => {
 
 module.exports.help = {
     name: 'jeckplscome'
+}
+
+module.exports.conf = {
+    aliases : ['jpc']
 }

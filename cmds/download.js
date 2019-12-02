@@ -4,7 +4,7 @@ module.exports.run = async (Tag, msg, args) => {
     let server = msg.guild;
     if (server.id !== "473223354330120203") {
         msg.delete();
-        msg.member.send(`You'll probably want to try that in here :wink: \nhttps://discord.gg/BVtZnvk`)
+        msg.member.send(`You'll probably want to try that in here :wink: \nhttps://discord.gg/DDhCnK5`)
     } else {
         const downsend = new Discord.RichEmbed()
             .setTitle(`Click here to download Hydrogen`)
@@ -25,4 +25,8 @@ module.exports.run = async (Tag, msg, args) => {
 
 module.exports.help = {
     name: "download"
-};
+}
+
+module.exports.conf = {
+    aliases: ['dl']
+}

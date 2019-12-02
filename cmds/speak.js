@@ -12,3 +12,7 @@ module.exports.run = async (Tag, msg, args) => {
 module.exports.help = {
     name: 'speak'
 }
+
+module.exports.conf = {
+    aliases: ['s']
+}

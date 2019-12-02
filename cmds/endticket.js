@@ -1,18 +1,5 @@
 module.exports.run = async (Tag, msg, args) => {
-    function pluck(array) {
-        return array.map(function (item) {
-            return item["name"];
-        });
-    }
-
-    function hasRole(member, role) {
-        if (pluck(member.roles).includes(role)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    if (hasRole(msg.member, 'Support') || msg.member.hasPermission("MANAGE_MESSAGES")) {
+    if (msg.member.hasPermission("MANAGE_MESSAGES")) {
         let logchan = msg.guild.channels.find('name', 'bot_log');
         let supportchan = msg.guild.channels.find('name', 'support');
         let supportusr = msg.mentions.members.first() || msg.guild.members.get(args.slice(1).join(` `));
@@ -32,4 +19,8 @@ module.exports.run = async (Tag, msg, args) => {
 
 module.exports.help = {
     name: 'endticket'
+}
+
+module.exports.conf = {
+    aliases: ['et']
 }

@@ -20,5 +20,11 @@ module.exports.run = async (Tag, msg, args) => {
 }
 
 module.exports.help = {
-    name: "ask"
+    name: "ask",
+    description: 'Ask a silly question, get a sily answer',
+    usage: 'ask'
+}
+
+module.exports.conf = {
+    aliases : ['a', 'yo']
 }

@@ -8,5 +8,9 @@ module.exports.run = async (Tag, msg, args) => {
 }
 
 module.exports.help = {
-    name: 'rcr'
+    name: 'removecolourrole'
+}
+
+module.exports.conf = {
+    aliases : ['rcr']
 }

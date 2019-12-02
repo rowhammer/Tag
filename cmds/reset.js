@@ -3,7 +3,7 @@ module.exports.run = async (Tag, msg, args) => {
     if (msg.author.id === '391736039879999489' || msg.author.id === '143129339066580993' || msg.author.id === '236243553569865728' || msg.author.id === '175347895380213760' || msg.author.id === '391743942070370304' || msg.author.id === '165126937952387072' || msg.author.id === '207141112647909376' || msg.author.id === '342180964975247383' || msg.author.id === '246980481743192065' || msg.author.id === '184377805859979264') {
         const Discord = require('discord.js');
         let toReset = args.slice(0).join(` `);
-        let tagchan = msg.guild.channels.find('name', 'bot_log')
+        let tagchan = msg.guild.channels.find(bl => bl.name === 'bot_log')
         // msg.channel.send(toReset);
         const request = require('request');
         console.log('Starting...')
@@ -12,7 +12,7 @@ module.exports.run = async (Tag, msg, args) => {
             if (body === 'HWID Already Reset' || body === 'User Not Found') {
                 const failembed = new Discord.RichEmbed()
                     .setColor(0xff0000)
-                    .setAuthor('HWID Reset', msg.guild.iconURL)
+                    .setAuthor('HWID Reset Failed', msg.guild.iconURL)
                     .setDescription(`started by ${msg.author.username}`)
                     .addField('User', toReset, true)
                     .addField('Result', `${body}`, true)
@@ -28,7 +28,7 @@ module.exports.run = async (Tag, msg, args) => {
             } else {
                 const successembed = new Discord.RichEmbed()
                     .setColor(0x00ff00)
-                    .setAuthor('HWID Reset', msg.guild.iconURL)
+                    .setAuthor('HWID Reset Succeeded', msg.guild.iconURL)
                     .setDescription(`started by ${msg.author.username}`)
                     .addField('User', toReset, true)
                     .addField('Result', `Success! Reset Amount: ${body}`, true)
@@ -55,8 +55,10 @@ module.exports.run = async (Tag, msg, args) => {
     }
 }
 
-
-
 module.exports.help = {
     name: 'reset'
+}
+
+module.exports.conf = {
+    aliases: ['hwid']
 }

@@ -23,3 +23,7 @@ module.exports.run = (Tag, msg, args) => {
 module.exports.help = {
     name: "stats"
 }
+
+module.exports.conf = {
+    aliases: ['tag =']
+}

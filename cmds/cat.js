@@ -19,5 +19,11 @@ module.exports.run = async (Tag, msg, args) => {
     }
 }
 module.exports.help = {
-    name: 'cat'
+    name: 'cat',
+    description: 'Sends a picture of a cat, obvs',
+    usage: 'cat'
+}
+
+module.exports.conf = {
+    aliases : ['pusspuss']
 }

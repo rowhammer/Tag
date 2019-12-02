@@ -5,9 +5,12 @@ module.exports.run = async (Tag, msg, args) => {
         const color = args[1];
         console.log(name);
         console.log(color);
+        if (!args[0]) return msg.channel.send('Specify name').then(m => m.delete(5000));
+        if (!color) return msg.channel.send('Specify colour').then(m => m.delete(5000));
         const emcolor = color.substr(1)
         console.log(emcolor);
         msg.delete();
+
         try {
             guild.createRole({
                 name: `${name}`,
@@ -34,5 +37,12 @@ module.exports.run = async (Tag, msg, args) => {
 }
 
 module.exports.help = {
-    name: 'acr'
+    name: 'addcolourrole',
+    description: 'Creates a colour role on the server',
+    usage:'acr [name] [colour]'
 }
+
+module.exports.conf = {
+    aliases: ['acr', 'addcr']
+}
+

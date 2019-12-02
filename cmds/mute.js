@@ -68,3 +68,7 @@ module.exports.run = async(Tag, msg, args) => {
 module.exports.help = {
     name: 'mute'
 }
+
+module.exports.conf = {
+    aliases : ['shhh']
+}

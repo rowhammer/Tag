@@ -13,31 +13,46 @@ module.exports.run = (Tag, msg, args) => {
   });
 
   msg.delete();
-  const member = msg.mentions.members.first() || msg.guild.members.get(args[0]) || msg.member;
-  if (!member) return msg.reply("Please provide a vaild Mention or USER ID");
-  let bot;
-  if (member.user.bot === true) {
-    bot = "Yes";
+  let member;
+  if (args[0]) {
+    member = msg.mentions.members.first() ||
+      (msg.guild.members.get(args[0]) ||
+        msg.guild.members.find(m => m.user.username.toLowerCase().includes(args[0].toLowerCase())) ||
+        msg.guild.members.find(m => m.displayName.toLowerCase().includes(args[0].toLowerCase())))
   } else {
-    bot = "No";
+    member = msg.member;
   }
+
+  if (!member) return msg.reply("Please provide a vaild Mention or USER ID");
+
+  let bot;
+  member.user.bot ? bot = "Yes" : bot = "No";
+
   let nick = member.nickname;
   if (!nick) nick = "No nickname";
+
+  function checkPremium(url) {
+    return (url.match(/\.(gif)$/) != null);
+  }
+  let nitro;
+  checkPremium(member.user.avatarURL) ? nitro = "Yes" : nitro = "No";
+
   var roles = new Array();
   for (var [flake, role] of member.roles) {
     roles.push(role.toString());
   }
+
   const embed = new Discord.RichEmbed()
     .setColor(randomColor)
     .setThumbnail(`${member.user.displayAvatarURL}`)
     .setAuthor(`${member.user.tag} (${member.id})`, `${member.user.avatarURL}`)
     .addField("Nickname:", nick, true)
     .addField("Bot?", `${bot}`, true)
-    .addField("Nitro?", member.user.premium + member.user.premiumSince, true)
+    .addField("Nitro?", nitro, true)
     .addField("Guild", `${member.guild.name}`, true)
     .addField("Status", `${status[member.user.presence.status]}`, true)
     .addField("Playing", `${member.user.presence.activity ? `${member.user.presence.activity.name}` : "not playing anything."}`, true)
-    .addField("Roles [" + roles.length + "]", roles.join("\t"), false)
+    .setDescription("Roles [" + roles.length + "]", roles.join("\t"), false)
     .addField("Joined At", `${moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss")}`, true)
     .addField("Account Created At", `${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY, HH:mm:ss")}`, true)
     .setFooter(`Requested by ${msg.author.username}`, msg.author.avatarURL);
@@ -48,5 +63,11 @@ module.exports.run = (Tag, msg, args) => {
 
 
 module.exports.help = {
-  name: "userinfo"
+  name: "userinfo",
+  description: 'Sends information about your current user or another user in the server',
+  usage: 'userinfo, !userinfo [@person]'
+}
+
+module.exports.conf = {
+  aliases: ['uinfo']
 }

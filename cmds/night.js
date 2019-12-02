@@ -45,3 +45,7 @@ module.exports.run = async (Tag, msg, args) => {
 module.exports.help = {
     name: "night"
 }
+
+module.exports.conf = {
+    aliases : ['nighty']
+}

@@ -76,5 +76,11 @@ module.exports.run = async(Tag, msg, args) => {
 }
 
 module.exports.help = {
-    name: 'google'
+    name: 'google',
+    description: 'Searches Google for whatever you want',
+    usage: 'google'
 };
+
+module.exports.conf = {
+    aliases : ['g']
+}

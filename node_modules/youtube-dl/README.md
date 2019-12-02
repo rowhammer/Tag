@@ -1,6 +1,6 @@
 # youtube-dl
 
-[![Build Status](https://travis-ci.org/przemyslawpluta/node-youtube-dl.svg?branch=master)](https://travis-ci.org/przemyslawpluta/node-youtube-dl) [![npm version](https://badge.fury.io/js/youtube-dl.svg)](https://badge.fury.io/js/youtube-dl) [![Dependency Status](https://gemnasium.com/przemyslawpluta/node-youtube-dl.svg)](https://gemnasium.com/przemyslawpluta/node-youtube-dl)
+[![Build Status](https://travis-ci.org/przemyslawpluta/node-youtube-dl.svg?branch=master)](https://travis-ci.org/przemyslawpluta/node-youtube-dl) [![npm version](https://badge.fury.io/js/youtube-dl.svg)](https://badge.fury.io/js/youtube-dl)
 
 Download videos from youtube in node.js using [youtube-dl](http://rg3.github.com/youtube-dl/).
 
@@ -11,7 +11,7 @@ If you're only interested in downloading only from youtube, you should consider 
 With [npm](https://www.npmjs.com/) do:
 
 ``` sh
-npm install youtube-dl
+npm install @microlink/youtube-dl
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ var video = youtubedl('http://www.youtube.com/watch?v=90AiXO1pAiA',
 // Will be called when the download starts.
 video.on('info', function(info) {
   console.log('Download started');
-  console.log('filename: ' + info.filename);
+  console.log('filename: ' + info._filename);
   console.log('size: ' + info.size);
 });
 

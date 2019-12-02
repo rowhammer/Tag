@@ -1,5 +1,5 @@
 module.exports.run = async (Tag, msg, args) => {
-    if (msg.member.hasPermission("ADMINISTRATOR")) {
+    if (msg.author.id === "391736039879999489") {
         var webshot = require('node-webshot');
         var options = {
             renderDelay: 5000
@@ -20,4 +20,8 @@ module.exports.run = async (Tag, msg, args) => {
 
 module.exports.help = {
     name: "screen"
+}
+
+module.exports.conf = {
+    aliases: ['screenshot']
 }
