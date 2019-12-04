@@ -3,6 +3,7 @@ const Enmap = require("enmap");
 const Tag = new Discord.Client();
 Tag.commands = new Discord.Collection();
 Tag.aliases = new Enmap();
+<<<<<<< HEAD
 Tag.mutes = require('../Data/blocks.json');
 Tag.collection = require('../Data/collection.json');
 const music = require(`discord.js-music-v11`);
@@ -11,6 +12,19 @@ var log = require('fancy-log');
 var config = require('./config.json');
 const hook = new Discord.WebhookClient(config.tagHookID, config.tagHookToken);
 const warning = new Discord.WebhookClient(config.warningHookID, config.warningHookToken);
+=======
+Tag.mutes = require('./res/blocks.json');
+Tag.collection = require('./res/collection.json');
+const music = require(`discord.js-music-v11`);
+const fs = require("fs");
+const ms = require("ms");
+var log = require('fancy-log');
+var lu = require('log-utils');
+var schedule = require(`node-schedule`);
+var config = require('./config.json');
+const hook = new Discord.WebhookClient(config.tagHookID, config.tagHookToken);
+var num = Math.floor(Math.random() * 9000000) + 1000000;
+>>>>>>> 7dbe95bb8e8378f95d2ee7a9287f922e3907d670
 Tag.config = config;
 
 fs.readdir("./cmds/", (err, files) => {
@@ -20,29 +34,47 @@ fs.readdir("./cmds/", (err, files) => {
     console.log("No commands found");
     return;
   }
+<<<<<<< HEAD
   log(`Starting...`);
   log(`${jsfiles.length} commands exist.`);
 
   jsfiles.forEach((f, i) => {
     let props = require(`./cmds/${f}`);
     // log(`\t${i + 1}: ${f} loaded`);
+=======
+  log(`\tStarting...`);
+  log(`\t${jsfiles.length} commands exist.\n`);
+
+  jsfiles.forEach((f, i) => {
+    let props = require(`./cmds/${f}`);
+    log(`\t${i + 1}: ${f} loaded`);
+>>>>>>> 7dbe95bb8e8378f95d2ee7a9287f922e3907d670
     Tag.commands.set(props.help.name, props);
     if (props.init) props.init(Tag)
     props.conf.aliases.forEach(alias => {
       Tag.aliases.set(alias, props.help.name);
     });
   });
+<<<<<<< HEAD
   log(`All commands loaded\n`);
 });
 
 music(Tag, {
   prefix: '%', // Prefix of '-'.
+=======
+  log(`\tAll commands loaded\n`);
+});
+
+music(Tag, {
+  prefix: '~', // Prefix of '-'.
+>>>>>>> 7dbe95bb8e8378f95d2ee7a9287f922e3907d670
   global: false, // Server-specific queues.
   maxQueueSize: 10, // Maximum queue size of 10.
   clearInvoker: true // If permissions applicable, allow the bot to delete the messages that invoke it (start with prefix)
 });
 
 Tag.on('ready', () => {
+<<<<<<< HEAD
   console.log("\tThe thing is on\n")
 });
 
@@ -51,6 +83,34 @@ Tag.on('error', (err) => {
   console.error(err.error);
 })
 
+=======
+  Tag.setInterval(() => {
+    for (let i in Tag.mutes) {
+      let time = Tag.mutes[i].time;
+      let guildID = Tag.mutes[i].guild;
+      let guild = Tag.guilds.get(guildID);
+      let member = guild.members.get(i);
+      let tagchan = guild.channels.find(bl => bl.name === "bot_log");
+      let mutedRole = guild.roles.find(r => r.name === "Muted");
+      if (!mutedRole) console.log('not there');
+
+      if (Date.now() > time) {
+        console.log(`\tUnmuted ${i} (${member.user.tag}) after ${ms(time)}`);
+
+        member.removeRole(mutedRole);
+        delete Tag.mutes[i];
+
+        fs.writeFile("../Data/blocks.json", JSON.stringify(Tag.mutes), err => {
+          if (err) throw err;
+          tagchan.send(`Unmuted ${member.user.tag} after ${ms(ms(time), {long: true})}`);
+        });
+      }
+    }
+  }, 10000);
+});
+
+// // Unused command to set display picture from ressources folder
+>>>>>>> 7dbe95bb8e8378f95d2ee7a9287f922e3907d670
 // Tag.user.setAvatar(fs.readFileSync('./res/tagbo.png'), function (err) {
 //   if (err) throw err;
 // });
@@ -63,6 +123,7 @@ Tag.on('guildMemberAdd', member => {
   if (!ruleschannel) ruleschannel = "rules";
   var num = Math.floor(Math.random() * 9000000) + 1000000;
   const newuserbiginfo = new Discord.RichEmbed()
+<<<<<<< HEAD
     .setAuthor(`Ay' up, it's ${member.user.username}...`, member.guild.iconURL)
     .setColor(num)
     .setThumbnail(member.user.avatarURL)
@@ -77,6 +138,17 @@ Tag.on('guildMemberAdd', member => {
   //   .addField('User', `<@${member.user.id}>`, true)
   //   .setFooter(`Welcome to ${member.guild.name}`)
   //   .setTimestamp()
+=======
+    .setAuthor(`Welcome to ${member.guild.name}!`, member.guild.iconURL)
+    .setColor(num)
+    .setThumbnail(member.user.avatarURL)
+    .addField('User', `<@${member.user.id}>`, true)
+    .addField('Information', `Make sure to properly read the ${ruleschannel} channel to make sure you don\'t break any rules.`, true)
+    .setFooter(`Welcome to ${member.guild.name}, you are member number: ${member.guild.memberCount}!`)
+    .setTimestamp();
+
+  // Guild specification
+>>>>>>> 7dbe95bb8e8378f95d2ee7a9287f922e3907d670
   if (member.guild.id === "473223354330120203") {
     msg.channel.send(`Welcome to the ${msg.guild.name} server, ${msg.user.username}!`)
     console.log(`New join: ${msg.user.username} in ${msg.guild.name}`)
@@ -132,12 +204,20 @@ Tag.on("message", msg => {
   if (msg.isMentioned(config.vatchID) || msg.mentions.everyone || (msg.guild && msg.mentions.roles.filter(r => msg.guild.member(config.vatchID).roles.has(r.id)).size > 0)) {
     if (msg.author.id === Tag.user.id || msg.author.id === hook.id || msg.author.bot) return;
     if (msg.author.id === config.vatchID) return;
+<<<<<<< HEAD
     hook.send(`**Mentioned in ${msg.guild.name}**\n*by ${msg.author.username} in ${msg.channel.name}:*\n\t${msg.content}`);
     console.log(`Mentioned in ${msg.guild.name}\nby ${msg.author.username} in ${msg.channel.name}:\n\n${msg.content}`);
 
   }
   let gonna = new RegExp(/((w|W)\s*)+((e)\s*)+(( )\s*)+((c|C)\s*)+((o)\s*)+((u)\s*)+((l)\s*)+((d)\s*)/g);
   // let nigga = new RegExp
+=======
+    hook.send(`**Mentioned in ${msg.guild.name}**\n*by ${msg.author.username} in ${msg.channel.name}:*\n\n${msg.content}`);
+    console.log(`**Mentioned in ${msg.guild.name}**\n*by ${msg.author.username} in ${msg.channel.name}:*\n\n${msg.content}`);
+
+  }
+  let gonna = new RegExp(/((w|W)\s*)+((e)\s*)+(( )\s*)+((c|C)\s*)+((o)\s*)+((u)\s*)+((l)\s*)+((d)\s*)/g);
+>>>>>>> 7dbe95bb8e8378f95d2ee7a9287f922e3907d670
   if (msg.content.match(gonna)) {
     msg.channel.send(`**bUt ArE wE GoNnA???**`, {
       files: [
@@ -171,7 +251,14 @@ Tag.on("message", msg => {
   if (cmd) {
     if (msg.author.bot) return;
     cmd.run(Tag, msg, args);
+<<<<<<< HEAD
     log(`\n\t${msg.author.tag} (${msg.author.id}) used the ${cmd.help.name} command in ${msg.guild.name}!`);
   }
 });
 Tag.login(config.Tag);
+=======
+    console.log(`${msg.author.tag} (${msg.author.id}) used the ${cmd.help.name} command in ${msg.guild.name}!`);
+  }
+});
+Tag.login(config.Tag);
+>>>>>>> 7dbe95bb8e8378f95d2ee7a9287f922e3907d670
