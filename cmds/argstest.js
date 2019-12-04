@@ -24,13 +24,7 @@ if (msg.author.id === '391736039879999489') {
 }
 }
 module.exports.help = {
-<<<<<<< HEAD
     name: "argstest"
-=======
-    name: "argstest",
-    description: "Tests 6 arguments and prints to channel and console",
-    usage: "argstest"
->>>>>>> 7dbe95bb8e8378f95d2ee7a9287f922e3907d670
 }
 
 module.exports.conf = {

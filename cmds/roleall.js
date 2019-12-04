@@ -10,13 +10,9 @@ module.exports.run = async (Tag, msg, args) => {
 }
 
 module.exports.help = {
-<<<<<<< HEAD
     name: "roleall",
     description: "Removes all roles from the server",
     usage: "roleall"
-=======
-    name: "roleall"
->>>>>>> 7dbe95bb8e8378f95d2ee7a9287f922e3907d670
 }
 
 module.exports.conf = {
